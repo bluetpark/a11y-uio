@@ -1,0 +1,18 @@
+@charset "UTF-8";
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-family:'나눔바른고딕','Nanum Barun Gothic','나눔바른고딕OTF','NanumBarunGothicOTF','Malgun Gothic',Arial, sans-serif;font-size:14px;line-height:1.5}
+img,fieldset{border:0}
+img,li{vertical-align:top}
+ul,ol,li{list-style:none}
+em,address{font-style:normal}
+a{color:inherit;text-decoration:none}
+a:hover,a:active,a:focus{text-decoration:underline}
+button{border:0;background:none;cursor:pointer}
+table{border-collapse:collapse;border-spacing:0}
+input,select{-webkit-appearance:none;-moz-appearance:none;-o-appearance:none;appearance:none;-webkit-border-radius:0;-moz-border-radius:0;-o-border-radius:0;border-radius:0;-webkit-box-shadow:none;-moz-box-shadow:none;-o-box-shadow:none}
+input[type=radio]{appearance:radio;}
+select::-ms-expand{display:none}
+textarea{-webkit-border-radius:0;-moz-border-radius:0;-o-border-radius:0;border-radius:0;-webkit-box-shadow:none;-moz-box-shadow:none;-o-box-shadow:none}
+input[type=text]::-ms-clear,input[type=text]::-ms-reveal,input[type=search]::-ms-clear,input[type=search]::-ms-reveal{display:none;width:0;height:0}
+input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none}
+.blind,legend{overflow:hidden;position:absolute;clip:rect(0 0 0 0);width:1px;height:1px;line-height:0;margin:-1px;}

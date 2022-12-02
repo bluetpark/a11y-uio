@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A11Y Tab UI 기본 [role=tablist] > [role=tab]</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <style>
+      .tab_demo1 [role=tablist]{display:flex;}
+      .tab_demo1 [role=tablist] > li:not(:first-child){margin-left:4px;}
+      .tab_demo1 [role=tab]{padding:4px 8px;border-radius:4px;background:silver;}
+      .tab_demo1 [role=tab]:not(:first-child){margin-left:4px;}
+      .tab_demo1 [role=tab][aria-selected=true]{background:gold;font-weight:bold;}
+
+      [role=tabpanel]{margin-top:8px;padding-top:4px;border-top:1px solid #ccc;}
+    </style>
+  </head>
+  <body>
+
+    <div class="box_case">
+      <!-- 기본 탭 -->
+      <h1 id="title" class="tit_case">카테고리별 랭킹</h1>
+      <div class="tab_demo1 _a11y_tab">
+        <div role="tablist" aria-labelledby="title">
+          <button type="button" id="tab1-1" role="tab" aria-selected="true" aria-controls="tabpanel1-1">패션</button>
+          <button type="button" id="tab1-2" role="tab" aria-selected="false" aria-controls="tabpanel1-2" tabindex="-1">잡화</button>
+          <button type="button" id="tab1-3" role="tab" aria-selected="false" aria-controls="tabpanel1-3" tabindex="-1">스포츠</button>
+        </div>
+        <div id="tabpanel1-1" role="tabpanel" aria-labelledby="tab1-1" tabindex="0">
+          <p>더엣지</p>
+          <p>캘빈클라인</p>
+          <p>셀렙샵 에디션</p>
+        </div>
+        <div id="tabpanel1-2" role="tabpanel" aria-labelledby="tab1-2" style="display:none;">
+          <p>엘리자베스 스튜어트</p>
+          <p>버버리</p>
+          <p>베라왕</p>
+        </div>
+        <div id="tabpanel1-3" role="tabpanel" aria-labelledby="tab1-3" style="display:none;">
+          <p>콜마르</p>
+          <p>에디바우어</p>
+          <p>머렐</p>
+        </div>
+      </div>
+      <!-- // 기본 탭 -->
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/a11y.js"></script>
+  </body>
+</html>

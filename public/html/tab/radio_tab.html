@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A11Y Tab UI 라디오 탭</title>
+    <link rel="stylesheet" href="../../css/common.css">
+    <style>
+      .tab_demo2 .inp_rdo_wrap{position:relative;}
+      .tab_demo2 .inp_rdo_wrap:not(:first-child){margin-left:8px;}
+      .tab_demo2 .inp_rdo_wrap input[type=radio]{position:absolute;top:0;left:0;width:1px;height:1px;opacity:0;}
+      .tab_demo2 .inp_rdo_wrap input[type=radio]:focus-visible + label{outline:auto;}
+      .tab_demo2 .inp_rdo_wrap input[type=radio]:checked + label{color:#640faf;font-weight:bold;text-decoration:underline;}
+
+      [role=tabpanel]{margin-top:8px;padding-top:4px;border-top:1px solid #ccc;}
+    </style>
+  </head>
+  <body>
+
+    <div class="box_case">
+      <!-- 라디오 탭 기본 -->
+      <h1 id="title2" class="tit_case">이벤트 카테고리</h1>
+      <div class="_a11y_tab">
+        <div role="tablist" aria-labelledby="title2">
+          <span class="inp_rdo_wrap">
+            <input type="radio" id="tab3-1" name="rdo_tab" role="tab" aria-selected="true" aria-controls="tabpanel3-1" checked>
+            <label for="tab3-1" aria-hidden="true">전체</label>
+          </span>
+          <span class="inp_rdo_wrap">
+            <input type="radio" id="tab3-2" name="rdo_tab" role="tab" aria-selected="false" aria-controls="tabpanel3-2" tabindex="-1">
+            <label for="tab3-2">CJ온스타일</label>
+          </span>
+          <span class="inp_rdo_wrap">
+            <input type="radio" id="tab3-3" name="rdo_tab" role="tab" aria-selected="false" aria-controls="tabpanel3-3" tabindex="-1">
+            <label for="tab3-3">TV쇼핑</label>
+          </span>
+        </div>
+        <div id="tabpanel3-1" role="tabpanel" aria-labelledby="tab3-1" tabindex="0">
+          <p>전체 게시물 목록</p>
+        </div>
+        <div id="tabpanel3-2" role="tabpanel" aria-labelledby="tab3-2" style="display:none;">
+          <p>CJ온스타일 게시물 목록</p>
+        </div>
+        <div id="tabpanel3-3" role="tabpanel" aria-labelledby="tab3-3" style="display:none;">
+          <p>TV쇼핑 게시물 목록</p>
+        </div>
+      </div>
+      <!-- // 라디오 탭 기본 -->
+    </div>
+
+    <div class="box_case">
+      <!-- 라디오 탭 커스텀 -->
+      <div class="tab_demo2 _a11y_tab">
+        <div role="tablist" aria-label="이벤트 카테고리">
+          <span class="inp_rdo_wrap">
+            <input type="radio" id="tab4-1" name="rdo_tab2" role="tab" aria-selected="true" aria-controls="tabpanel4-1" checked>
+            <label for="tab4-1">전체</label>
+          </span>
+          <span class="inp_rdo_wrap">
+            <input type="radio" id="tab4-2" name="rdo_tab2" role="tab" aria-selected="false" aria-controls="tabpanel4-2" tabindex="-1">
+            <label for="tab4-2">CJ온스타일</label>
+          </span>
+          <span class="inp_rdo_wrap">
+            <input type="radio" id="tab4-3" name="rdo_tab2" role="tab" aria-selected="false" aria-controls="tabpanel4-3" tabindex="-1">
+            <label for="tab4-3">TV쇼핑</label>
+          </span>
+        </div>
+        <div id="tabpanel4-1" role="tabpanel" aria-labelledby="tab4-1" tabindex="0">
+          <p>전체 게시물 목록</p>
+        </div>
+        <div id="tabpanel4-2" role="tabpanel" aria-labelledby="tab4-2" style="display:none;">
+          <p>CJ온스타일 게시물 목록</p>
+        </div>
+        <div id="tabpanel4-3" role="tabpanel" aria-labelledby="tab4-3" style="display:none;">
+          <p>TV쇼핑 게시물 목록</p>
+        </div>
+      </div>
+      <!-- // 라디오 탭 커스텀 -->
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/a11y.js"></script>
+  </body>
+</html>
