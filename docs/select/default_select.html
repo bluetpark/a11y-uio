@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A11Y Select 기본</title>
+    <link rel="stylesheet" href="../css/common.css" />
+    <style>
+      ._a11y_select{position:relative}
+      ._a11y_select button{width:100%;text-align:left;}
+      ._a11y_select_panel{position:absolute;top:100%;left:0;width:inherit;box-sizing:border-box;z-index:1;}
+      ._a11y_select [role=option]:hover{background:royalblue;color:#fff;}
+      ._a11y_select [role=option][aria-selected=true]{font-weight:bold;}
+
+      .select_demo{width:200px;}
+      .select_demo .select_btn{position:relative;height:24px;padding:0 25px 0 6px;border:1px solid #767676;border-radius:4px;}
+      .select_demo .select_btn:after{display:block;position:absolute;top:50%;right:10px;width:0;height:0;margin-top:-3px;border-width:6px 4px 0;border-style:solid;border-color:#767676 transparent;content:"";}
+      .select_demo .select_btn[aria-expanded="true"]{border-radius:4px 4px 0 0;}
+      .select_demo .select_btn[aria-expanded="true"]:after{transform:rotate(180deg);}
+      .select_demo .select_panel{margin-top:-1px;border:1px solid #767676;border-radius:0 0 4px 4px;background:#fff;}
+      .select_demo .select_panel li:not(:first-child){border-top:1px solid #ccc;}
+      .select_demo .select_panel [role=option]{height:24px;padding:0 5px;}
+      .select_demo .select_panel [role=option][aria-selected=true]{color:red;}
+    </style>
+  </head>
+  <body>
+
+    <div class="box_case">
+      <h1 class="tit_case">기본 스타일링 예시</h1>
+      <div class="_a11y_select">
+        <button type="button" class="_a11y_select_btn" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-live="assertive">추천순</button>
+        <div class="_a11y_select_panel" style="display:none">
+          <ul role="listbox">
+            <li><button type="button" role="option" aria-selected="true">추천순</button></li>
+            <li><button type="button" role="option">가격 높은 순</button></li>
+            <li><button type="button" role="option">가격 낮은 순</button></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="box_case">
+      <h1 class="tit_case">스타일링 적용 예시</h1>
+      <div class="select_demo _a11y_select">
+        <button type="button" class="select_btn _a11y_select_btn" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-live="assertive" data-selected="0">전체연령</button>
+        <div class="select_panel _a11y_select_panel" style="display:none">
+          <ul role="listbox">
+            <li><button type="button" role="option" aria-selected="true">전체연령</button></li>
+            <li><button type="button" role="option">20대</button></li>
+            <li><button type="button" role="option">30대</button></li>
+            <li><button type="button" role="option">40대</button></li>
+            <li><button type="button" role="option">50대</button></li>
+            <li><button type="button" role="option">60대</button></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="box_case">
+      <h1 class="tit_case">select 요소</h1>
+      <select name="" id="">
+        <option value="">전체연령</option>
+        <option value="">20대</option>
+        <option value="">30대</option>
+        <option value="">40대</option>
+        <option value="">50대</option>
+        <option value="">60대</option>
+      </select>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../js/a11y.js"></script>
+  </body>
+</html>
