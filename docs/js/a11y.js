@@ -65,15 +65,16 @@ $(function(){
         .on('keydown', function (e) {
           var nCurrent = welOption.index( welListbox.find('[role=option][aria-selected=true]') );
           if ( e.keyCode === 38 || e.keyCode === 40 ) {
+            // 방향키 위, 방향키 아래 무시
             e.preventDefault();
             // 방향키 위 && 옵션 첫번째가 아닐 때
             if ( e.keyCode === 38 && nCurrent > 0 ){ nCurrent--; }
             // 방향키 아래 && 옵션 마지막이 아닐 때
             if ( e.keyCode === 40 && nCurrent < welOption.length - 1 ){ nCurrent++; }
+            welOption.removeAttr('aria-selected');
+            welOption.eq(nCurrent).attr('aria-selected','true');
+            welCombobox.text( welOption.eq(nCurrent).text() );
           }
-          welOption.removeAttr('aria-selected');
-          welOption.eq(nCurrent).attr('aria-selected','true');
-          welCombobox.text( welOption.eq(nCurrent).text() );
         });
       welOption
         .on('click', function () {
@@ -86,22 +87,17 @@ $(function(){
         .on('keydown', function (e){
           var nCurrent = welOption.index( welListbox.find('[role=option][aria-selected=true]') );
           welCombobox.attr('aria-live','off');
-          if ( e.keyCode === 32 || e.keyCode === 38 || e.keyCode === 40 ) {
+          if ( e.keyCode === 9 || e.keyCode === 27 || e.keyCode === 32 || e.keyCode === 38 || e.keyCode === 40 ) {
+            // 탭, ESC, 스페이스, 방향키 위, 방향키 아래 무시
             e.preventDefault();
-            // 스페이스 무시
-            if ( e.keyCode === 32 ) { e.preventDefault(); }
             // 방향키 위 && 옵션 첫번째가 아닐 때
             if ( e.keyCode === 38 && nCurrent > 0 ) { nCurrent--; }
             // 방향키 아래 && 옵션 마지막이 아닐 때
             if ( e.keyCode === 40 && nCurrent < welOption.length - 1 ) { nCurrent++; }
-          }
-          welOption.removeAttr('aria-selected');
-          welOption.eq(nCurrent).attr('aria-selected','true').trigger('focus');
-          welCombobox.text( welOption.eq(nCurrent).text() );
-          // 탭 무시 및 포커스 돌려주기
-          if ( e.keyCode === 9 ){
-            e.preventDefault();
-            $(this).trigger('click');
+            welOption.removeAttr('aria-selected').eq(nCurrent).attr('aria-selected','true').trigger('focus');
+            welCombobox.text( welOption.eq(nCurrent).text() );
+            // 탭, ESC 포커스 돌려주기
+            if ( e.keyCode === 9 || e.keyCode === 27 ) { $(this).trigger('click'); }
           }
         });
     });
