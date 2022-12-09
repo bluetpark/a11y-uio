@@ -96,7 +96,7 @@ $(function(){
             if ( e.keyCode === 40 && nCurrent < welOption.length - 1 ) { nCurrent++; }
             welOption.removeAttr('aria-selected').eq(nCurrent).attr('aria-selected','true').trigger('focus');
             welCombobox.text( welOption.eq(nCurrent).text() );
-            // 탭, ESC 포커스 돌려주기
+            // 탭, ESC 초점 돌려주기
             if ( e.keyCode === 9 || e.keyCode === 27 ) { $(this).trigger('click'); }
           }
         });
