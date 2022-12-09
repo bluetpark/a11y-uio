@@ -52,7 +52,7 @@ $(function(){
       var welPanel = welListbox.parent();
       var welOption = welWrap.find('[role=option]');
       welCombobox
-        .on('click', function (e){
+        .on('click', function (){
           if (welCombobox.attr('aria-expanded') === 'false'){
             welCombobox.attr('aria-expanded', 'true');
             welPanel.show();
@@ -64,24 +64,37 @@ $(function(){
         })
         .on('keydown', function (e){
           var nCurrent = welOption.index(welListbox.find('[role=option][aria-selected=true]'));
-          // 방향키 위 && 옵션 첫번째가 아닐 때
-          if (e.keyCode === 38 && nCurrent > 0){ nCurrent--; }
-          // 방향키 아래 && 옵션 마지막이 아닐 때
-          if (e.keyCode === 40 && nCurrent < welOption.length - 1){ nCurrent++;}
+          if ( e.keyCode === 38 || e.keyCode === 40 ) {
+            e.preventDefault();
+            // 방향키 위 && 옵션 첫번째가 아닐 때
+            if (e.keyCode === 38 && nCurrent > 0){ nCurrent--; }
+            // 방향키 아래 && 옵션 마지막이 아닐 때
+            if (e.keyCode === 40 && nCurrent < welOption.length - 1){ nCurrent++; }
+          }
           welOption.removeAttr('aria-selected');
           welOption.eq(nCurrent).attr('aria-selected', 'true');
           welCombobox.text(welOption.eq(nCurrent).text());
         });
       welOption
+        .on('click', function (){
+          welOption.removeAttr('aria-selected');
+          $(this).attr('aria-selected', 'true');
+          welCombobox.text($(this).text()).attr({ 'aria-expanded':'false', 'aria-live':'assertive' });
+          welCombobox.trigger('focus');
+          setTimeout(function (){ welPanel.hide(); }, 100);
+        })
         .on('keydown', function (e){
           var nCurrent = welOption.index(welListbox.find('[role=option][aria-selected=true]'));
           welCombobox.attr('aria-live', 'off');
-          // 스페이스 무시
-          if (e.keyCode === 32){ e.preventDefault(); }
-          // 방향키 위 && 옵션 첫번째가 아닐 때
-          if (e.keyCode === 38 && nCurrent > 0){ nCurrent--; }
-          // 방향키 아래 && 옵션 마지막이 아닐 때
-          if (e.keyCode === 40 && nCurrent < welOption.length - 1){ nCurrent++; }
+          if (e.keyCode === 32 || e.keyCode === 38 || e.keyCode === 40) {
+            e.preventDefault();
+            // 스페이스 무시
+            if (e.keyCode === 32){ e.preventDefault(); }
+            // 방향키 위 && 옵션 첫번째가 아닐 때
+            if (e.keyCode === 38 && nCurrent > 0){ nCurrent--; }
+            // 방향키 아래 && 옵션 마지막이 아닐 때
+            if (e.keyCode === 40 && nCurrent < welOption.length - 1){ nCurrent++; }
+          }
           welOption.removeAttr('aria-selected');
           welOption.eq(nCurrent).attr('aria-selected', 'true').trigger('focus');
           welCombobox.text(welOption.eq(nCurrent).text());
@@ -90,13 +103,6 @@ $(function(){
             e.preventDefault();
             $(this).trigger('click');
           }
-        })
-        .on('click', function (){
-          welOption.removeAttr('aria-selected');
-          $(this).attr('aria-selected', 'true');
-          welCombobox.text($(this).text()).attr({ 'aria-expanded':'false', 'aria-live':'assertive' });
-          welCombobox.trigger('focus');
-          setTimeout(function (){ welPanel.hide(); }, 100);
         });
     });
   }
