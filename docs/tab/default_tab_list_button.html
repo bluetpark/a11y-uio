@@ -9,15 +9,9 @@
     <style>
       .tab_demo1 [role=tablist]{display:flex;}
       .tab_demo1 [role=tablist] > li:not(:first-child){margin-left:4px;}
-      .tab_demo1 [role=tab]{padding:4px 8px;border-radius:4px;background:silver;}
+      .tab_demo1 [role=tab]{padding:4px 8px;border-radius:4px;background:silver;color:#000;}
       .tab_demo1 [role=tab]:not(:first-child){margin-left:4px;}
       .tab_demo1 [role=tab][aria-selected=true]{background:gold;font-weight:bold;}
-
-      .tab_demo2 .inp_rdo_wrap{position:relative;}
-      .tab_demo2 .inp_rdo_wrap:not(:first-child){margin-left:8px;}
-      .tab_demo2 .inp_rdo_wrap input[type=radio]{position:absolute;top:0;left:0;width:1px;height:1px;opacity:0;}
-      .tab_demo2 .inp_rdo_wrap input[type=radio]:focus-visible + label{outline:auto;}
-      .tab_demo2 .inp_rdo_wrap input[type=radio]:checked + label{color:#640faf;font-weight:bold;text-decoration:underline;}
 
       [role=tabpanel]{margin-top:8px;padding-top:4px;border-top:1px solid #ccc;}
     </style>
