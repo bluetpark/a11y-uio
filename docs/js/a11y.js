@@ -9,8 +9,8 @@ $(function(){
       var welTabList = welWrap.find('[role=tablist]');
       var welTabBtn = welWrap.find('[role=tab]');
       var welTabPanel = welWrap.find('[role=tabpanel]');
-      var nTabFocus = 0;
       var nTabActive = 0;
+      var nTabFocus = nTabActive;
       welTabList
         .on('click', '[role=tab]', function () {
           nTabFocus = welTabBtn.index( $(this) ) ;
@@ -24,17 +24,17 @@ $(function(){
           if ( e.keyCode === 9 || e.keyCode === 37 || e.keyCode === 39 ) {
             e.preventDefault();
             $(welTabBtn[nTabFocus]).attr('tabindex','-1');
-            // Left Arrow
+            // 방향키 왼쪽
             if ( e.keyCode === 37 ) {
               nTabFocus--;
               if ( nTabFocus < 0 ) { nTabFocus = welTabBtn.length - 1; }
             }
-            // Right Arrow
+            // 방향키 오른쪽
             if ( e.keyCode === 39 ) {
               nTabFocus++;
               if ( nTabFocus >= welTabBtn.length ) { nTabFocus = 0; }
             }
-            // Tab
+            // 탭
             if ( e.keyCode === 9 ) { nTabFocus = nTabActive; }
             $(welTabBtn[nTabFocus]).attr('tabindex','0');
             $(welTabBtn[nTabFocus]).trigger('focus');
