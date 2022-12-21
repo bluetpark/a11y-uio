@@ -21,7 +21,7 @@ $(function(){
           welTabPanel.eq(nTabFocus).show().attr('tabindex','0');
         })
         .on('keydown', '[role=tab]', function (e) {
-          if ( e.keyCode === 9 || e.keyCode === 37 || e.keyCode === 39 ) {
+          if ( e.keyCode === 37 || e.keyCode === 39 ) {
             e.preventDefault();
             $(welTabBtn[nTabFocus]).attr('tabindex','-1');
             // 방향키 왼쪽
