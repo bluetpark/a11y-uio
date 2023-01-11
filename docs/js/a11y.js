@@ -12,11 +12,12 @@ $(function(){
       var nTabActive = welTabBtn.index( welWrap.find('[role=tab][aria-selected=true]') );
       var nTabFocus = nTabActive;
       welTabList
-        .on('click', '[role=tab]', function () {
-          nTabFocus = welTabBtn.index( $(this) ) ;
+        .on('click', '[role=tab]', function (e) {
+          var welActiveTabBtn = $(this);
+          nTabFocus = welTabBtn.index( welActiveTabBtn ) ;
           nTabActive = nTabFocus;
           welTabBtn.attr({'aria-selected':'false','tabindex':'-1'});
-          $(this).attr({'aria-selected':'true','tabindex':'0'});
+          welActiveTabBtn.attr({'aria-selected':'true'}).removeAttr('tabindex');
           welTabPanel.hide().removeAttr('tabindex');
           welTabPanel.eq(nTabFocus).show().attr('tabindex','0');
         })
@@ -38,7 +39,7 @@ $(function(){
             if ( e.keyCode === 9 ) {
               if (nTabFocus !== nTabActive) { nTabFocus = nTabActive; }
             }
-            $(welTabBtn[nTabFocus]).attr('tabindex','0');
+            $(welTabBtn[nTabFocus]).removeAttr('tabindex');
             $(welTabBtn[nTabFocus]).trigger('focus');
           }
         });
