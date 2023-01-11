@@ -21,8 +21,8 @@ $(function(){
           welTabPanel.eq(nTabFocus).show().attr('tabindex','0');
         })
         .on('keydown', '[role=tab]', function (e) {
-          if ( e.keyCode === 37 || e.keyCode === 39 ) {
-            e.preventDefault();
+          if ( e.keyCode === 9 || e.keyCode === 37 || e.keyCode === 39 ) {
+            if ( e.keyCode === 37 || e.keyCode === 39 ) { e.preventDefault(); }
             $(welTabBtn[nTabFocus]).attr('tabindex','-1');
             // 방향키 왼쪽
             if ( e.keyCode === 37 ) {
@@ -35,7 +35,9 @@ $(function(){
               if ( nTabFocus >= welTabBtn.length ) { nTabFocus = 0; }
             }
             // 탭
-            if ( e.keyCode === 9 ) { nTabFocus = nTabActive; }
+            if ( e.keyCode === 9 ) {
+              if (nTabFocus !== nTabActive) { nTabFocus = nTabActive; }
+            }
             $(welTabBtn[nTabFocus]).attr('tabindex','0');
             $(welTabBtn[nTabFocus]).trigger('focus');
           }
