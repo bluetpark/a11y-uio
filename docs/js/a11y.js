@@ -9,7 +9,7 @@ $(function(){
       var welTabList = welWrap.find('[role=tablist]');
       var welTabBtn = welWrap.find('[role=tab]');
       var welTabPanel = welWrap.find('[role=tabpanel]');
-      var nTabActive = 0;
+      var nTabActive = welTabBtn.index( welWrap.find('[role=tab][aria-selected=true]') );
       var nTabFocus = nTabActive;
       welTabList
         .on('click', '[role=tab]', function () {
