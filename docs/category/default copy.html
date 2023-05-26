@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A11Y Category UI</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+      ._a11y_menu{position:relative;}
+      ._a11y_menu_btn{display:block;width:40px;height:40px;border-radius:50%;background:gold;}
+      ._a11y_menu_panel{position:absolute;top:40px;left:0;}
+    </style>
+  </head>
+  <body>
+
+    <div class="box_case">
+      <!-- 기본 카테고리 -->
+      <h1 id="title" class="tit_case">기본 카테고리</h1>
+      <div class="_a11y_menu">
+        <button type="button" class="_a11y_menu_btn" aria-haspopup="true" aria-expanded="false" aria-controls="category"><span class="blind">전체 카테고리 보기</span></button>
+        <div id="category" class="_a11y_menu_panel" style="display:none;border:1px solid red;">
+          <ul role="menu">
+            <li role="none presentation">
+              <a href="#" role="menuitem">패션</a>
+              <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="category1">패션 하위 카테고리</button>
+              <div id="category1" style="display:none;">
+                <ul role="menu">
+                  <li role="none presentation">
+                    <a href="#" role="menuitem">패션 홈</a>
+                  </li>
+                  <li role="none presentation">
+                    <a href="#" role="menuitem">여성의류</a>
+                    <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="category1-1">여성의류 하위 카테고리</button>
+                    <div id="category1-1" style="display:none;">
+                      <ul role="menu">
+                        <li role="none presentation">
+                          <a href="#" role="menuitem">티셔츠</a>
+                        </li>
+                        <li role="none presentation">
+                          <a href="#" role="menuitem">블라우스/셔츠</a>
+                        </li>
+                        <li role="none presentation">
+                          <a href="#" role="menuitem">니트/가디건</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li role="none presentation">
+                    <a href="#" role="menuitem">남성의류</a>
+                    <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="category1-2">남성의류 하위 카테고리</button>
+                    <div id="category1-2" style="display:none;">
+                      <ul role="menu">
+                        <li role="none presentation">
+                          <a href="#" role="menuitem">아우터</a>
+                        </li>
+                        <li role="none presentation">
+                          <a href="#" role="menuitem">정장</a>
+                        </li>
+                        <li role="none presentation">
+                          <a href="#" role="menuitem">상의</a>
+                        </li>
+                        <li role="none presentation">
+                          <a href="#" role="menuitem">하의</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li role="none presentation">
+              <a href="#" role="menuitem">잡화</a>
+              <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="category2">잡화 하위 카테고리</button>
+              <div id="category2" style="display:none;">
+                <ul role="menu">
+                  <li role="none presentation">
+                    <a href="#" role="menuitem">잡화 홈</a>
+                  </li>
+                  <li role="none presentation">
+                    <a href="#" role="menuitem">가방/지갑/패션소품</a>
+                    <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="category2-1">가방/지갑/패션소품 하위 카테고리</button>
+                    <div id="category2-1" style="display:none;">
+                      <ul role="menu">
+                        <li role="none presentation">
+                          <a href="#" role="menuitem">여성가방</a>
+                        </li>
+                        <li role="none presentation">
+                          <a href="#" role="menuitem">남성가방</a>
+                        </li>
+                        <li role="none presentation">
+                          <a href="#" role="menuitem">여행가방</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li role="none presentation">
+                    <a href="#" role="menuitem">슈즈/스니커즈</a>
+                    <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="category2-2">슈즈/스니커즈 하위 카테고리</button>
+                    <div id="category2-2" style="display:none;">
+                      <ul role="menu">
+                        <li role="none presentation">
+                          <a href="#" role="menuitem">여성슈즈</a>
+                        </li>
+                        <li role="none presentation">
+                          <a href="#" role="menuitem">남성슈즈</a>
+                        </li>
+                        <li role="none presentation">
+                          <a href="#" role="menuitem">스니커즈/운동화</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li role="none presentation">
+              <a href="#" role="menuitem">스포츠</a>
+              <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="category3">스포츠 하위 카테고리</button>
+              <div id="category3" style="display:none;">
+                <ul role="menu">
+                  <li role="none presentation">
+                    <a href="#" role="menuitem">스포츠 홈</a>
+                  </li>
+                  <li role="none presentation">
+                    <a href="#" role="menuitem">스포츠/아웃도어 의류</a>
+                    <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="category3-1">스포츠/아웃도어 의류 하위 카테고리</button>
+                    <div id="category3-1" style="display:none;">
+                      <ul role="menu">
+                        <li role="none presentation">
+                          <a href="#" role="menuitem">남성스포츠의류</a>
+                        </li>
+                        <li role="none presentation">
+                          <a href="#" role="menuitem">여성스포츠의류</a>
+                        </li>
+                        <li role="none presentation">
+                          <a href="#" role="menuitem">유아동스포츠의류</a>
+                        </li>
+                        <li role="none presentation">
+                          <a href="#" role="menuitem">아웃도어의류</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li role="none presentation">
+                    <a href="#" role="menuitem">스포츠잡화/슈즈</a>
+                    <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="category3-2">스포츠잡화/슈즈 하위 카테고리</button>
+                    <div id="category3-2" style="display:none;">
+                      <ul role="menu">
+                        <li role="none presentation">
+                          <a href="#" role="menuitem">남성스포츠화</a>
+                        </li>
+                        <li role="none presentation">
+                          <a href="#" role="menuitem">여성스포츠화</a>
+                        </li>
+                        <li role="none presentation">
+                          <a href="#" role="menuitem">아동스포츠화</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- // 기본 카테고리 -->
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../js/a11y.js"></script>
+  </body>
+</html>

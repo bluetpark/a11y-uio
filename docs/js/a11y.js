@@ -106,4 +106,78 @@ $(function(){
     });
   }
 
+  // 카테고리
+  if ( $('._a11y_menu').length >= 1 ) {
+    $('._a11y_menu').each(function () {
+      var welMenu = $(this);
+      var welMenuBtn = welMenu.find('._a11y_menu_btn');
+      var welMenuPanel = welMenu.find('._a11y_menu_panel');
+      // 조건 1. 1뎁스 하위메뉴는 하나만 열릴 수 있다. 하나가 열리면 다른 것은 닫힘.
+      // 키보드 동작
+        // button
+          // enter키
+            // 하위메뉴 닫혔을 때
+              // button에 aria-expanded="true"
+              // 하위메뉴 열기
+            // 하위메뉴 열렸을 때
+              // button에 aria-expanded="false"
+              // 하위메뉴 닫기
+        // 하위메뉴
+          // esc 키 실행
+            // 열었던 버튼으로 초점 이동
+            // 하위메뉴 닫기
+      // 마우스 동작
+        // 하위메뉴 영역에서 마우스 빠지면 하위메뉴 닫기
+        // a
+          // 마우스 올림
+            // 하위메뉴 열기
+          // 마우스 내림
+            // 하위메뉴 닫기
+      welMenuBtn
+        .on('click',function(){
+          if ( $(this).is('[aria-expanded=false]') ) {
+            $(this).attr('aria-expanded','true');
+          } else {
+            $(this).attr('aria-expanded','false');
+          }
+        })
+        .on('mouseenter',function(){
+          $(this).attr('aria-expanded','true');
+        })
+        .on('mouseleave',function(){
+          $(this).attr('aria-expanded','false');
+        });
+      welMenuPanel
+        .on('mouseenter',function(){
+          welMenuBtn.trigger('mouseenter');
+        })
+        .on('mouseleave',function(){
+          $(this).find('button[aria-expanded]').attr('aria-expanded','false');
+          welMenuBtn.trigger('mouseleave');
+        });
+      welMenuPanel.find('button[aria-expanded]')
+        .on('click',function(){
+          var welBtn = $(this);
+          welBtn.parent().siblings().find('button[aria-expanded]').attr('aria-expanded','false');
+          if ( welBtn.is('[aria-expanded=false]') ) {
+            welBtn.attr('aria-expanded','true');
+          } else {
+            welBtn.attr('aria-expanded','false');
+          }
+        })
+        .on('mouseenter',function(){
+          var welBtn = $(this);
+          welBtn.parent().siblings().find('button[aria-expanded]').attr('aria-expanded','false');
+          welBtn.attr('aria-expanded','true');
+        });
+      welMenuPanel.find('a, button')
+        .on('keydown',function(e){
+          var welTarget = $(this);
+          if (e.keyCode === 27) {
+            welTarget.closest('div').prev('button[aria-expanded]').trigger('focus').attr('aria-expanded','false');
+          }
+        });
+    });
+  }
+
 });
