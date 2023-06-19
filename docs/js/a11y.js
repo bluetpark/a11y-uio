@@ -112,6 +112,7 @@ $(function(){
       var welMenu = $(this);
       var welMenuBtn = welMenu.find('._a11y_menu_btn');
       var welMenuPanel = welMenu.find('._a11y_menu_panel');
+      var sActiveClass = 'is_active';
       // 조건 1. 1뎁스 하위메뉴는 하나만 열릴 수 있다. 하나가 열리면 다른 것은 닫힘.
       // 키보드 동작
         // button
@@ -137,46 +138,59 @@ $(function(){
         .on('click',function(){
           if ( $(this).is('[aria-expanded=false]') ) {
             $(this).attr('aria-expanded','true');
+            welMenuPanel.addClass(sActiveClass);
           } else {
             $(this).attr('aria-expanded','false');
+            welMenuPanel.removeClass(sActiveClass);
           }
         })
         .on('mouseenter',function(){
           $(this).attr('aria-expanded','true');
+          welMenuPanel.addClass(sActiveClass);
         })
         .on('mouseleave',function(){
           $(this).attr('aria-expanded','false');
+          welMenuPanel.removeClass(sActiveClass);
         });
       welMenuPanel
         .on('mouseenter',function(){
           welMenuBtn.trigger('mouseenter');
         })
         .on('mouseleave',function(){
-          $(this).find('button[aria-expanded]').attr('aria-expanded','false');
+          $(this).find('button[aria-expanded]').attr('aria-expanded','false').siblings().removeClass(sActiveClass);
           welMenuBtn.trigger('mouseleave');
         });
+
       welMenuPanel.find('button[aria-expanded]')
         .on('click',function(){
           var welBtn = $(this);
-          welBtn.parent().siblings().find('button[aria-expanded]').attr('aria-expanded','false');
+          var welPanel = $('#' + $(this).attr('aria-controls'));
+          welBtn.parent().siblings().find('button[aria-expanded]').attr('aria-expanded','false').siblings().removeClass(sActiveClass);
           if ( welBtn.is('[aria-expanded=false]') ) {
             welBtn.attr('aria-expanded','true');
+            welPanel.addClass(sActiveClass);
           } else {
             welBtn.attr('aria-expanded','false');
+            welPanel.removeClass(sActiveClass);
           }
         })
         .on('mouseenter',function(){
           var welBtn = $(this);
-          welBtn.parent().siblings().find('button[aria-expanded]').attr('aria-expanded','false');
+          var welPanel = $('#' + $(this).attr('aria-controls'));
+          welBtn.parent().siblings().find('button[aria-expanded]').attr('aria-expanded','false').siblings().removeClass(sActiveClass);
           welBtn.attr('aria-expanded','true');
+          welPanel.addClass(sActiveClass);
         });
       welMenuPanel.find('a, button')
         .on('keydown',function(e){
           var welTarget = $(this);
           if (e.keyCode === 27) {
-            welTarget.closest('div').prev('button[aria-expanded]').trigger('focus').attr('aria-expanded','false');
+            welTarget.closest('div').removeClass('is_active').prev('button[aria-expanded]').trigger('focus').attr('aria-expanded','false');
           }
         });
+      welMenuPanel.find('a').on('mouseenter',function(){
+        $(this).next('button[aria-expanded]').trigger('mouseenter');
+      });
     });
   }
 
