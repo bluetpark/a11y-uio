@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A11Y Category UI</title>
+    <title>A11Y Category UI 버튼형(하위메뉴 오픈)</title>
     <link rel="stylesheet" href="../css/common.css">
     <style>
-      .menu_demo{position:relative;}
+      .menu_demo{display:inline-block;position:relative;}
       .menu_demo ._a11y_menu_btn{display:block;position:relative;height:40px;padding:0 12px 0 40px;border:1px solid #e6e6e6;background-color:#fff;}
       .menu_demo ._a11y_menu_btn .icon{display:block;position:absolute;top:50%;left:12px;width:20px;height:2px;margin-top:-1px;background-color:#111;}
       .menu_demo ._a11y_menu_btn .icon:before,.menu_demo ._a11y_menu_btn .icon:after{display:block;position:absolute;width:inherit;height:inherit;background-color:inherit;content:'';}
@@ -15,22 +15,25 @@
       .menu_demo ._a11y_menu_btn .icon:after{top:6px;}
       .menu_demo ._a11y_menu_btn[aria-expanded=true]{border-color:#640faf;background-color:#640faf;color:#fff;}
       .menu_demo ._a11y_menu_btn[aria-expanded=true] .icon{background-color:#fff;}
-      .menu_demo ._a11y_menu_panel{position:absolute;top:40px;left:0;width:600px;height:300px;background:#fff;border:1px solid #640faf;}
-      .menu_demo ._a11y_menu_panel button[aria-expanded=true]{font-weight:bold;}
-      .menu_demo ._a11y_menu_panel button[aria-expanded=true]+div{position:absolute;top:0;left:200px;width:200px;}
-      .menu_demo ._a11y_menu_panel li > div{height:100%;border-left:1px solid #640faf;}
+      .menu_demo>._a11y_menu_panel{position:absolute;top:40px;left:0;width:600px;height:300px;background:#fff;border:1px solid #640faf;z-index:1;}
+      .menu_demo li>._a11y_menu_panel{position:absolute;top:0;left:180px;width:180px;height:100%;border-left:1px solid #640faf;}
+      .menu_demo ._a11y_menu_panel a{text-decoration:none;}
+      .menu_demo ._a11y_menu_panel a:focus,
+      .menu_demo ._a11y_menu_panel a:hover{color:#640faf;text-decoration:none;}
+      .menu_demo ._a11y_menu_panel a+button{display:inline-block;margin-left:4px;}
+      .menu_demo ._a11y_menu_panel button:after{display:inline-block;width:0;height:0;margin:0 0 2px 4px;border-width:4px 0 4px 6px;border-color:transparent transparent transparent silver;border-style:solid;vertical-align:middle;content:'';}
+      .menu_demo .is_active>a,
+      .menu_demo .is_active>button{color:#640faf;font-weight:bold;}
+      .menu_demo .is_active>button:after{border-left-color:#640faf;}
 
-      ._a11y_menu_panel,
-      ._a11y_menu_panel button + div{display:none;}
-      ._a11y_menu_btn[aria-expanded=true]+._a11y_menu_panel,
-      ._a11y_menu_panel button[aria-expanded=true]+div{display:block;}
+      ._a11y_menu_panel{display:none;}
+      .is_active>._a11y_menu_panel{display:block;}
     </style>
   </head>
   <body>
 
-    <div class="box_case">
-      <!-- 기본 카테고리 -->
-      <h1 id="title" class="tit_case">기본 카테고리</h1>
+    <div class="box_case" style="padding-bottom:320px;">
+      <!-- 카테고리 버튼형(하위메뉴 오픈) -->
       <div class="menu_demo _a11y_menu">
         <button type="button" class="_a11y_menu_btn" aria-haspopup="menu" aria-expanded="false" aria-controls="category">
           <span class="icon"></span>
@@ -40,14 +43,14 @@
           <ul aria-label="카테고리">
             <li>
               <button type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="panel1">패션</button>
-              <div id="panel1" role="menu">
+              <div id="panel1" class="_a11y_menu_panel" role="menu">
                 <ul aria-label="패션">
                   <li>
                     <a href="#cate1">패션 홈</a>
                   </li>
                   <li>
                     <button type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="panel1-1">여성의류</button>
-                    <div id="panel1-1" role="menu">
+                    <div id="panel1-1" class="_a11y_menu_panel" role="menu">
                       <ul aria-label="여성의류">
                         <li>
                           <a href="#cate1-1">여성의류 홈</a>
@@ -66,7 +69,7 @@
                   </li>
                   <li>
                     <button type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="panel1-2">남성의류</button>
-                    <div id="panel1-2" role="menu">
+                    <div id="panel1-2" class="_a11y_menu_panel" role="menu">
                       <ul aria-label="남성의류">
                         <li>
                           <a href="#cate1-2">남성의류 홈</a>
@@ -91,14 +94,14 @@
             </li>
             <li>
               <button type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="panel2">잡화</button>
-              <div id="panel2" role="menu">
+              <div id="panel2" class="_a11y_menu_panel" role="menu">
                 <ul aria-label="잡화">
                   <li>
                     <a href="#cate2">잡화 홈</a>
                   </li>
                   <li>
                     <button type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="panel2-1">가방/지갑/패션소품</button>
-                    <div id="panel2-1" role="menu">
+                    <div id="panel2-1" class="_a11y_menu_panel" role="menu">
                       <ul aria-label="가방/지갑/패션소품">
                         <li>
                           <a href="#cate2-1">가방/지갑/패션소품 홈</a>
@@ -117,7 +120,7 @@
                   </li>
                   <li>
                     <button type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="panel2-2">슈즈/스니커즈</button>
-                    <div id="panel2-2" role="menu">
+                    <div id="panel2-2" class="_a11y_menu_panel" role="menu">
                       <ul aria-label="슈즈/스니커즈">
                         <li>
                           <a href="#cate2-2">슈즈/스니커즈 홈</a>
@@ -139,14 +142,14 @@
             </li>
             <li>
               <button type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="panel3">스포츠</button>
-              <div id="panel3" role="menu">
+              <div id="panel3" class="_a11y_menu_panel" role="menu">
                 <ul aria-label="스포츠">
                   <li>
                     <a href="#cate3">스포츠 홈</a>
                   </li>
                   <li>
                     <button type="button"  aria-haspopup="menu" aria-expanded="false" aria-controls="panel3-1">스포츠/아웃도어</button>
-                    <div id="panel3-1" role="menu">
+                    <div id="panel3-1" class="_a11y_menu_panel" role="menu">
                       <ul aria-label="스포츠/아웃도어">
                         <li>
                           <a href="#cate3-1">스포츠/아웃도어 홈</a>
@@ -168,7 +171,7 @@
                   </li>
                   <li>
                     <button type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="panel3-2">스포츠잡화/슈즈</button>
-                    <div id="panel3-2" role="menu">
+                    <div id="panel3-2" class="_a11y_menu_panel" role="menu">
                       <ul aria-label="스포츠잡화/슈즈">
                         <li>
                           <a href="#cate3-2">스포츠잡화/슈즈 홈</a>
@@ -190,7 +193,7 @@
             </li>
           </ul>
         </div>
-        <!-- // 기본 -->
+        <!-- // 카테고리 버튼형(하위메뉴 오픈) -->
       </div>
     </div>
 
